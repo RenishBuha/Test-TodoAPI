@@ -25,4 +25,3 @@
 - After migration created succesfully perfrom all the test cases which are exists in TodoAPI.Test project.
 
 - Now you can execute web api.
--- git
