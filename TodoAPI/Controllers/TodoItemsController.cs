@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using TodoAPI.Mappers;
 using TodoAPI.Models;
 using TodoAPI.Services;
-using Microsoft.AspNetCore.Http;
 
 namespace TodoAPI.Controllers
 {

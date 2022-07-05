@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TodoAPI.Controllers;
+﻿using TodoAPI.Controllers;
 using TodoAPI.Services;
 using TodoAPI.TestNew.MockData;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Xunit;
 
 namespace TodoAPI.TestNew.System.Controllers
 {
