@@ -12,11 +12,12 @@ namespace TodoAPI.Test
                 .UseInMemoryDatabase(databaseName: "TodoList")
                 .Options;
         }
+
         [Fact]
         public void Test1()
         {
-            Assert.Equal(1, 1);     
-        }   
+            Assert.Equal(1, 1);
+        }
 
         [Theory(DisplayName = "Add Numbers")]
         [InlineData(4, 5, 9)]
