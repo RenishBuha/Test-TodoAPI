@@ -4,7 +4,7 @@ namespace TodoAPI.TestNew.MockData
 {
     public class TodoMockData
     {
-        public static List<TodoItemDTO> GetTodos()
+        public static  List<TodoItemDTO> GetTodos()
         {
             return new List<TodoItemDTO>
             {
@@ -35,6 +35,25 @@ namespace TodoAPI.TestNew.MockData
                 Id = 0,
                 Name = "Test",
                 IsComplete = false
+            };
+        }
+
+        public static List<TodoItem> GetTodoData()
+        {
+            return new List<TodoItem>
+            {
+                new TodoItem
+                {
+                    Id = 1,
+                    Name = "Abc",
+                    IsComplete = true
+                },
+                new TodoItem
+                {
+                    Id = 2,
+                    Name = "Xyz",
+                    IsComplete = false
+                }
             };
         }
     }

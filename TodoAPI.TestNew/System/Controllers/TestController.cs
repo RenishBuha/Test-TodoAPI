@@ -1,9 +1,7 @@
 ﻿using TodoAPI.Controllers;
 using TodoAPI.Services;
 using TodoAPI.TestNew.MockData;
-using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
-using Moq;
 
 namespace TodoAPI.TestNew.System.Controllers
 {
@@ -14,7 +12,7 @@ namespace TodoAPI.TestNew.System.Controllers
         {
             //Arrange
             var todoservice = new Mock<IToDoService>();
-            todoservice.Setup(x => x.GetAll()).Returns(TodoMockData.GetTodos());
+            todoservice.Setup(x => x.GetAllAsync()).ReturnsAsync(TodoMockData.GetTodos());
             var sut = new TodoItemsController(todoservice.Object);
 
             //Act
@@ -29,7 +27,7 @@ namespace TodoAPI.TestNew.System.Controllers
         {
             /// Arrange
             var todoService = new Mock<IToDoService>();
-            todoService.Setup(_ => _.GetAllAsync()).ReturnsAsync(TodoMockData.GetEmptyTodo());
+            todoService.Setup(x => x.GetAllAsync()).ReturnsAsync(TodoMockData.GetEmptyTodo());
             var sut = new TodoItemsController(todoService.Object);
 
             /// Act
@@ -37,7 +35,7 @@ namespace TodoAPI.TestNew.System.Controllers
 
             /// Assert
             result.StatusCode.Should().Be(204);
-            todoService.Verify(_ => _.GetAllAsync(), Times.Exactly(1));
+            todoService.Verify(x => x.GetAllAsync(), Times.Exactly(1));
         }
 
         [Fact]

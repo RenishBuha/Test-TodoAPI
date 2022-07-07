@@ -13,6 +13,17 @@ namespace TodoAPI.Mappers
                 Name = todoItem.Name,
                 IsComplete = todoItem.IsComplete
             };
-        } 
+        }
+
+        public static TodoItem? MapTotodoItem(TodoItemDTO todoItemDTO)
+        {
+            if (todoItemDTO == null) return null;
+            return new()
+            {
+                Id = todoItemDTO.Id,
+                Name = todoItemDTO.Name,
+                IsComplete = todoItemDTO.IsComplete
+            };
+        }
     }
 }

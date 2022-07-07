@@ -1,8 +1,9 @@
 ﻿using TodoAPI.Services;
 using TodoAPI.Models;
 using TodoAPI.TestNew.MockData;
-using FluentAssertions;
+
 using Microsoft.EntityFrameworkCore;
+using TodoAPI.Mappers;
 
 namespace TodoAPI.TestNew.System.Services
 {
@@ -25,7 +26,8 @@ namespace TodoAPI.TestNew.System.Services
         public async Task GetAllAsync_Test()
         {
             //Arrange
-            _TodoContext.TodoItems.AddRange((IEnumerable<TodoItem>)TodoMockData.GetTodos());
+
+            _TodoContext.TodoItems.AddRange(TodoMockData.GetTodoData());
             await _TodoContext.SaveChangesAsync();
 
             var sut = new ToDoService(_TodoContext);
@@ -34,7 +36,7 @@ namespace TodoAPI.TestNew.System.Services
             var result = await sut.GetAllAsync();
 
             //Assert
-            result.Should().HaveCount(TodoMockData.GetTodos().Count);
+            result.Should().HaveCount(TodoMockData.GetTodoData().Count);
         }
 
         [Fact]
@@ -43,8 +45,7 @@ namespace TodoAPI.TestNew.System.Services
             //Arrange
             var newTodo = TodoMockData.NewTodo();
 
-            _TodoContext.TodoItems.AddRange((IEnumerable<TodoItem>)TodoMockData.GetTodos());
-            
+            _TodoContext.TodoItems.AddRange(TodoMockData.GetTodoData());
             _TodoContext.SaveChanges();
 
             var sut = new ToDoService(_TodoContext);
@@ -53,7 +54,7 @@ namespace TodoAPI.TestNew.System.Services
             await sut.Add(newTodo);
 
             //Assert
-            int expectedCount = (TodoMockData.GetTodos().Count + 1);
+            int expectedCount = (TodoMockData.GetTodoData().Count + 1);
             _TodoContext.TodoItems.Count().Should().Be(expectedCount);
         }
 

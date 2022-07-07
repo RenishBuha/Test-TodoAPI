@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TodoAPI.Models;
 using TodoAPI.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace TodoAPI.Controllers
 {
@@ -151,7 +152,11 @@ namespace TodoAPI.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
             var result = await _toDoService.GetAllAsync();
-            if (result.Count == 0)
+            if(result == null)
+            {
+                return NoContent();
+            }
+            else if (result.Count == 0)
             {
                 return NoContent();
             }
